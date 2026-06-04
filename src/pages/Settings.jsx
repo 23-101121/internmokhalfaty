@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Settings.css';
+import watermarkLogo from '../assets/logo_watermark.png'; 
 
 import imgHome from '../assets/icon_home.png';
 import imgPlate from '../assets/icon_plate.png';
@@ -15,12 +16,15 @@ export default function Settings() {
   const [isAudioOn, setIsAudioOn] = useState(true);
 
   return (
-    <div className="settings-screen-container">
+    /* Added page-transition-fade here for a smooth screen entry animation */
+    <div className="settings-screen-container page-transition-fade">
       <div className="settings-bg-layer" />
 
-      <div className="settings-watermark">
-        <span className="settings-watermark-text">YA MOKHALFATY</span>
+      <div className="menu-watermark">
+        <img src={watermarkLogo} alt="" className="watermark-icon" onError={(e) => e.target.style.display='none'} />
+        <span className="watermark-text">YA MOKHALFATY</span>
       </div>
+      
 
       <div className="settings-receipt-card">
         

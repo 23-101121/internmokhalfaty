@@ -1,0 +1,252 @@
+/* src/pages/Phrases.css */
+
+.phrases-screen-container {
+  background-color: #0B141F;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  padding: 35px 55px; 
+  box-sizing: border-box;
+}
+
+.phrases-bg-layer {
+ position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/preloader_bg.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15; /* Subtle bleed opacity so UI contents remain highly visible */
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HEADER DECK
+   ========================================================================== */
+.phrases-header-zone {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px; 
+}
+
+.phrases-back-btn {
+  background-color: #122232;
+  border: 2.5px solid #FF5722;
+  border-radius: 12px;
+  padding: 11px 24px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.phrases-back-btn:hover {
+  transform: scale(1.05);
+}
+
+.back-arrow-img {
+  width: 15px;
+  height: 15px;
+}
+
+.back-btn-text {
+  color: #FFFFFF;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.phrases-master-audio-btn {
+  background-color: #122232;
+  border: 2.5px solid #FF5722;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.phrases-master-audio-btn:hover {
+  transform: scale(1.05);
+  background-color: #1a3047;
+}
+
+.master-speaker-img {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+}
+
+.mute-cross-diagonal-line {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: #E11D48;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+.phrases-center-titles {
+  text-align: center;
+}
+
+.phrases-main-title {
+  color: #FFFFFF;
+  font-size: 3.3rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.phrases-arabic-subtitle {
+  color: #FF5722;
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 6px 0 0 0;
+  direction: rtl;
+}
+
+/* ==========================================================================
+   THE 3x3 DASHBOARD GRID
+   ========================================================================== */
+.phrases-shop-grid {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1360px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 22px; 
+  align-content: start;
+}
+
+/* Card Geometry Core: Boosted height and tracking presence */
+.phrase-card {
+  background-color: #FFFFFF;
+  border-radius: 18px;
+  padding: 18px 24px; /* Increased interior footprint */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 128px; /* Bumped up from 120px to look more prominent */
+  max-height: 145px;
+  box-shadow: 0 7px 22px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phrase-card.active-playable {
+  cursor: pointer;
+  border: 3.5px solid #FF5722;
+}
+
+.phrase-card.active-playable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 11px 26px rgba(255, 87, 34, 0.22);
+}
+
+.phrase-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.phrase-text-ar {
+  color: #0B141F;
+  font-size: 1.65rem; /* Upgraded size value for clear phrase presence */
+  font-weight: 800;
+  margin: 0;
+  text-align: right;
+  flex: 1;
+  direction: rtl;
+}
+
+.phrase-speaker-trigger {
+  background-color: #FF5722;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.card-speaker-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.phrase-translation-box {
+  background-color: #F4F6F9;
+  border-radius: 10px;
+  padding: 8px 15px;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.phrase-text-en {
+  color: #64748B;
+  font-size: 0.86rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: left;
+}
+
+/* ==========================================================================
+   LOCKED CORES
+   ========================================================================== */
+.phrase-card.locked-state {
+  background-color: transparent;
+  border: 3.5px solid #FF5722;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  box-shadow: none;
+}
+
+.lock-icon-wrapper {
+  color: #FF5722;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-vector-graphic {
+  width: 100%;
+  height: 100%;
+}
+
+.lock-text-lbl {
+  color: #FFFFFF;
+  font-size: 1.08rem;
+  font-weight: 800;
+  margin: 0;
+}

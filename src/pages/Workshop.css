@@ -1,0 +1,505 @@
+/* --- src/pages/Workshop.css --- */
+
+.workshop-screen-container {
+  background-color: #0B141F;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Cairo', sans-serif;
+  user-select: none;
+  padding: 40px 40px;
+  box-sizing: border-box;
+}
+
+.workshop-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/preloader_bg.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15; /* Subtle bleed opacity so UI contents remain highly visible */
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+.workshop-header-zone {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.workshop-back-btn {
+  background-color: #1F2D3D;
+  border: 2px solid #FF6B35;
+  border-radius: 10px;
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.workshop-back-btn:hover {
+  transform: scale(1.05);
+}
+
+.back-arrow-img {
+  width: 16px;
+  height: auto;
+}
+
+.back-btn-text {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.workshop-center-titles {
+  text-align: center;
+}
+
+.workshop-main-title {
+  color: #FFFFFF;
+  font-size: 3.2rem;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1;
+}
+
+.workshop-arabic-title {
+  color: #FF6B35;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 4px 0 0 0;
+  display: block;
+}
+
+/* Wallet Badge Shared Rule */
+.workshop-wallet-badge {
+  background-color: #FF6B35;
+  padding: 10px 18px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.wallet-badge-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.wallet-badge-value {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+
+.workshop-dashboard-workspace {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1200px;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.workshop-panel-card {
+  width: 30%;
+  background-color: #152232;
+  border: 2px solid #23354A;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-sizing: border-box;
+}
+
+.panel-headline {
+  color: #FFFFFF;
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 8px 0;
+  opacity: 0.9;
+}
+
+
+.upgrade-item-row {
+  background: rgba(35, 53, 74, 0.4);
+  border: 1px solid #23354A;
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.upgrade-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upgrade-row-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.upgrade-label-en {
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.upgrade-label-ar {
+  color: #7A8B9E;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.upgrade-fraction {
+  align-self: flex-start;
+  font-size: 0.60rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  background-color: #4A5568;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* Track modifications */
+.progress-bar-track {
+  width: 100%;
+  height: 10px;
+  background-color: #0B141F;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #23354A;
+}
+
+.progress-fill-indicator {
+  height: 100%;
+  background-color: #FF6B35;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+/* Primary Action Buttons */
+.workshop-action-trigger-btn {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background-color: #E65F2B;
+  color: #FFFFFF;
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.workshop-action-trigger-btn:hover {
+  filter: brightness(1.1);
+}
+
+.workshop-action-trigger-btn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   RIGHT PANEL: STICKERS MARKET TILES
+   ========================================================================== */
+.sticker-shop-item-card {
+  background-color: #1A2A3E;
+  border: 1px solid #23354A;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 54px;
+  transition: border-color 0.2s ease;
+}
+
+.sticker-shop-item-card.is-acquired {
+  border-color: #2ECC71;
+}
+
+.sticker-arabic-display-text {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.text-orange { color: #E65F2B; }
+.text-cyan { color: #3498DB; }
+.text-yellow { color: #F1C40F; }
+
+/* Dynamic Status Badge Triggers */
+.sticker-status-action-badge {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #FFFFFF;
+  background-color: #2ECC71; /* Default Owned state */
+}
+
+.sticker-status-action-badge.action-buy-trigger {
+  background-color: #E65F2B;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.sticker-status-action-badge.action-buy-trigger:hover {
+  filter: brightness(1.1);
+}
+
+.sticker-status-action-badge.action-buy-trigger:active {
+  transform: scale(0.95);
+}
+
+
+.workshop-central-canvas-display {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.microbus-avatar-showcase-box {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 65%; /* Constrains vehicle canvas to ensure perfect layout fitting */
+}
+
+.showcase-preloader-bg-img {
+  max-width: 95%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+}
+
+/* Specs Details Box Footer Card */
+.vehicle-metrics-footer-card {
+  width: 100%;
+  max-width: 500px;
+  background-color: #152232;
+  border: 2px solid #23354A;
+  border-radius: 14px;
+  padding: 16px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+.vehicle-profile-name {
+  color: #FFFFFF;
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 12px 0;
+  opacity: 0.9;
+}
+
+.metrics-specs-flex-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.spec-item-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spec-title-lbl {
+  color: #7A8B9E;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.spec-value-output {
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+
+.orange-color {
+  color: #FF6B35;
+}
+
+/* ==========================================================================
+   SHOP TRANSACTION ALERTS POPUPS SYSTEM
+   ========================================================================== */
+.shop-popup-dimmer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(11, 20, 31, 0.9);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-popup-alert-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 90%;
+  animation: modalPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.shop-popup-headline-text {
+  font-family: 'Cairo', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.shop-popup-headline-text.mefales-profile {
+  color: #FF5252;
+}
+
+.shop-popup-headline-text.basha-profile {
+  color: #35ff4d;
+}
+
+.shop-popup-subline-text {
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 10px 0 25px 0;
+  opacity: 0.9;
+}
+
+.shop-popup-dismiss-btn {
+  background-color: #FF5722;
+  color: #FFFFFF;
+  border: none;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 10px 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+  transition: transform 0.1s ease;
+}
+
+.shop-popup-dismiss-btn:hover {
+  transform: scale(1.05);
+}
+
+@keyframes modalPopIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   PARTICLES LAYOUT
+   ========================================================================== */
+.modal-particles-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 90;
+  overflow: hidden;
+}
+
+.floating-particle-item {
+  position: absolute;
+  object-fit: contain;
+  opacity: 0;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+  animation: explodeAndFloat 2.6s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+}
+
+.item-index-0 { left: 10%; top: 15%;  animation-delay: 0.0s; width: 170px; height: 170px; }
+.item-index-1 { left: 16%; top: 48%;  animation-delay: 0.3s; width: 135px; height: 135px; }
+.item-index-2 { left: 8%;  top: 72%;  animation-delay: 0.1s; width: 155px; height: 155px; }
+
+.item-index-3 { right: 10%; top: 12%; animation-delay: 0.2s; width: 180px; height: 180px; }
+.item-index-4 { right: 15%; top: 45%; animation-delay: 0.4s; width: 140px; height: 140px; }
+.item-index-5 { right: 6%;  top: 70%; animation-delay: 0.1s; width: 165px; height: 165px; }
+
+@keyframes explodeAndFloat {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) translateY(60px) rotate(-15deg);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0) rotate(5deg);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(1) translateY(-35px) rotate(-10deg);
+  }
+}
+
+/* Mechanical Drop Transition for the Garage Workshop */
+.page-transition-drop {
+  animation: mechanicalDropIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+@keyframes mechanicalDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

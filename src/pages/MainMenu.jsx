@@ -21,7 +21,8 @@ export default function MainMenu() {
   }, []);
 
   return (
-    <div className="menu-container">
+    /* Added page-transition-fade here for a smooth screen entry animation */
+    <div className="menu-container page-transition-fade">
       {/* Background road environment scene */}
       <div className="menu-background-layer" />
 

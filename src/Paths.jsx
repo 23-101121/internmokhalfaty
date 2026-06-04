@@ -8,6 +8,10 @@ import MainMenu from './pages/MainMenu';
 import LevelSelect from './pages/LevelSelect';
 import DriverManual from './pages/DriverManual';
 import Settings from './pages/Settings';
+import Plates from './pages/Plates';
+import Workshop from './pages/Workshop';
+import Characters from './pages/Characters';
+import Phrases from './pages/Phrases';
 
 export default function Paths() {
   return (
@@ -18,6 +22,15 @@ export default function Paths() {
         <Route path="/levels" element={<LevelSelect />} />
         <Route path="/manual" element={<DriverManual />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/plates" element={<Plates />} />
+       <Route path="/workshop" element={<Workshop />} />
+        <Route path="/ahwa" element={<Characters />} />
+                <Route path="/phrases" element={<Phrases />} />
+
+
+
+
+
       </Routes>
     </BrowserRouter>
   );
