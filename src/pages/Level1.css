@@ -1,0 +1,655 @@
+.level1-root-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   FLOATING OVERLAY PROGRESS ROAD TRACKER
+   ========================================================================== */
+.floating-progress-wrapper {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 520px;
+  z-index: 120;
+  font-family: 'Cairo', sans-serif;
+}
+
+.progress-metrics-text {
+  display: flex;
+  justify-content: space-between;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.progress-outer-groove {
+  width: 100%;
+  height: 14px;
+  background-color: #131D2A;
+  border: 2px solid #23354A;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+}
+
+.progress-fluid-fill {
+  height: 100%;
+  background-color: #FF6B35;
+  box-shadow: 0 0 15px #FF6B35;
+  transition: width 0.1s linear;
+}
+
+/* ==========================================================================
+   SQUIRCLE CONTROLLER BUTTONS LAYOUT ROW (MATCHES image_cf7e48)
+   ========================================================================== */
+.hud-touch-controls-row {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 180;
+  background-color: rgba(17, 22, 27, 0.96);
+  border: 2px solid #1C232B;
+  border-radius: 22px;
+  padding: 10px 28px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+}
+
+.pill-control-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.squircle-arrow-btn {
+  background-color: #FF5722;
+  border: 3px solid #FFFFFF;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.05s ease;
+}
+
+.squircle-arrow-btn:active {
+  transform: scale(0.9);
+}
+
+.squircle-arrow-btn img {
+  width: 18px;
+  height: auto;
+  object-fit: contain;
+}
+
+.pill-action-text {
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 1.15rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ==========================================================================
+   INTERACTION GAME MODAL BOXES SYSTEMS
+   ========================================================================== */
+.game-alert-dimmer {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 20, 31, 0.94);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.alert-content-card {
+  background-color: #152232;
+  border-radius: 16px;
+  padding: 35px 25px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 12px 45px rgba(0,0,0,0.6);
+  color: #FFFFFF;
+}
+
+.border-orange { border: 2px solid #FF5722; }
+.border-red    { border: 2px solid #FF5252; }
+.border-green  { border: 2px solid #2ECC71; }
+
+.arabic-headline {
+  font-size: 2.4rem;
+  margin: 0 0 12px 0;
+  font-weight: 900;
+}
+
+.orange-txt { color: #FF5722; }
+.red-txt    { color: #FF5252; }
+.green-txt  { color: #2ECC71; }
+
+.desc-txt {
+  font-size: 1rem;
+  color: #A0B0C0;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.alert-cta-btn {
+  margin-top: 30px;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.bg-orange { background-color: #FF5722; }
+.bg-red    { background-color: #FF5252; }
+.bg-green  { background-color: #2ECC71; }
+
+/* ==========================================================================
+   PHYSICS IMPACT RUMBLE SCREENS
+   ========================================================================== */
+.impact-rumble {
+  animation: vibratorFrameEffect 0.4s both;
+}
+
+@keyframes vibratorFrameEffect {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 2px, 0); }
+  40%, 60% { transform: translate3d(4px, -1px, 0); }
+}/* FLOATING PAUSE TRIGGER BUTTON (image_809ae6.png Matcher) */
+.hud-pause-trigger-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 54px;
+  height: 54px;
+  background-color: #121922;
+  border: 3px solid #FF5522; /* High-fidelity deep orange visual frame tracking */
+  border-radius: 14px;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.hud-pause-trigger-btn:hover {
+  transform: scale(1.05);
+}
+
+.pause-bars-icon {
+  display: flex;
+  gap: 6px;
+}
+
+.pause-bars-icon span {
+  width: 6px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* PAUSE MENU MODAL SCREEN CARD (image_809a8a.png Matcher) */
+.blur-backdrop {
+  background-color: rgba(10, 15, 24, 0.75) !important;
+  backdrop-filter: blur(4px);
+}
+
+.pause-dialog-card {
+  width: 420px;
+  background-color: #111a24;
+  border: 2px solid #FF5522;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+  animation: modalPopIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+.pause-card-header {
+  background-color: #1a2635;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #FF5522;
+}
+
+.pause-card-header h2 {
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.close-x-btn {
+  background: none;
+  border: none;
+  color: #8fa3b9;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.close-x-btn:hover {
+  color: #ffffff;
+}
+
+.pause-card-body {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* RESUME BUTTON (image_809a8a.png High Payout) */
+.action-resume-btn {
+  width: 180px;
+  padding: 12px 0;
+  background: linear-gradient(to bottom, #FF6633, #FF4411);
+  border: 1px solid #cc3300;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(255, 68, 17, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.action-resume-btn:hover {
+  background: linear-gradient(to bottom, #ff7744, #ff5522);
+}
+
+.play-triangle-symbol {
+  font-size: 0.85rem;
+}
+
+/* EXIT / MAIN MENU BUTTON */
+.action-exit-btn {
+  width: 180px;
+  padding: 12px 0;
+  background: linear-gradient(to bottom, #2c3e50, #1e2b37);
+  border: 1px solid #111a24;
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.action-exit-btn:hover {
+  background: linear-gradient(to bottom, #34495e, #243342);
+  color: #ffffff;
+}
+
+@keyframes modalPopIn {
+  from { transform: scale(0.9) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+/* ==========================================================================
+   Level 1 Global Canvas & Structural Settings
+   ========================================================================== */
+.level1-root-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Screen shaking collision rumble keyframes */
+.impact-rumble {
+  animation: screenShakeAction 0.45s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes screenShakeAction {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* ==========================================================================
+   Mabrouk ya wa7sh Score Report Card Modal Layout (image_80264d.png)
+   ========================================================================== */
+.score-report-card {
+  background-color: #fcfbf7; /* Off-white vintage ticket aesthetic */
+  width: 90%;
+  max-width: 440px;
+  border-radius: 16px;
+  padding: 30px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  transform: scale(1);
+  animation: popupBounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.border-green-accent {
+  border: 4px solid #2ecc71;
+}
+
+.report-headline-main {
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+}
+
+.green-txt {
+  color: #27ae60;
+}
+
+.report-headline-arabic {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0 0 2px 0;
+  color: #333333;
+}
+
+.report-sub-title {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.report-divider-line {
+  border: none;
+  border-top: 3px solid #222222;
+  margin: 18px auto;
+  width: 100%;
+}
+
+/* Metrics List & List Items */
+.report-metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.metric-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metric-badge-num {
+  background-color: #000000;
+  color: #ffffff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.metric-details-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-title-en {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #111111;
+  text-transform: uppercase;
+}
+
+.metric-title-ar {
+  font-size: 0.85rem;
+  color: #555555;
+  margin-top: -2px;
+}
+
+/* Money Reward / Extra Bonus Box */
+.fine-total-container-box {
+  background-color: #e2e1dc;
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.fine-label-mix {
+  font-size: 0.9rem;
+  color: #222222;
+}
+
+.fine-price-value-tag {
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+/* Action Buttons Grid */
+.report-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.btn-report-action {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-report-action:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-orange-solid {
+  background-color: #ff5722;
+  color: #ffffff;
+}
+
+.btn-grey-dark {
+  background-color: #757575;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Dark Game Over Card Layout (image_8026e0.png)
+   ========================================================================== */
+.dark-alert-card-box {
+  background-color: #151d2a; /* Midnight dark blue hue box */
+  width: 90%;
+  max-width: 440px;
+  border: 2px solid #ff4d4d;
+  border-radius: 20px;
+  padding: 40px 24px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+  animation: popupBounceIn 0.4s ease forwards;
+}
+
+.arabic-headline-heavy {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin: 0 0 20px 0;
+}
+
+.red-txt {
+  color: #ff4d4d;
+}
+
+.heavy-desc-txt {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #b0bccc;
+  margin: 0 0 30px 0;
+  padding: 0 10px;
+}
+
+.heavy-action-btn-red {
+  background-color: #ff4d5a;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 280px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #cc333f;
+  transition: transform 0.1s ease;
+}
+
+.heavy-action-btn-red:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #cc333f;
+}
+
+/* Pop In Animation Keyframe setup */
+@keyframes popupBounceIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Color Variations for Ticket Layouts */
+.border-red-accent {
+  border: 4px solid #ff4d4d;
+}
+
+.bg-red-badge {
+  background-color: #ff4d4d !important;
+  color: #ffffff;
+}
+
+.penalty-bg {
+  background-color: #fcebe8; /* Light pastel red tint box */
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.btn-red-solid {
+  background-color: #ff4d5a;
+  color: #ffffff;
+  box-shadow: 0 6px 0 #cc333f;
+}
+
+.btn-red-solid:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #cc333f;
+}
+
+/* Forces the action layout button to span nicely at full width if singular */
+.single-btn-layout {
+  grid-template-columns: 1fr !important;
+}
+
+/* ==========================================================================
+   SCREEN TOP RIGHT FIXED POSITION LAYER (Post-Game Screen Only)
+   ========================================================================== */
+.screen-top-right-wallet {
+  position: fixed; /* Changed to fixed to ensure it locks over the modal dimmer backdrop layer */
+  top: 30px;
+  right: 40px; 
+  z-index: 1001; /* Layered slightly above the dimmer overlay (1000) so it's fully bright and clickable */
+  animation: walletStatePopEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+/* Base structural class provided by you */
+.plates-wallet-badge {
+  background-color: #FF6B35;
+  padding: 10px 18px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.wallet-badge-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.wallet-badge-value {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+/* Green feedback ring for level completions */
+.wallet-glow-green {
+  filter: drop-shadow(0 0 15px rgba(46, 204, 113, 0.6));
+  animation: minorPulseGlow 0.8s ease-in-out infinite alternate;
+}
+
+/* Red feedback ring for vehicle failures */
+.wallet-glow-red {
+  filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.6));
+  animation: minorPulseGlow 0.8s ease-in-out infinite alternate;
+}
+
+/* Animations */
+@keyframes walletStatePopEntrance {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes minorPulseGlow {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}

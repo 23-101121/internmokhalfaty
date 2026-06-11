@@ -3,6 +3,7 @@ import React, { createContext, useState, useEffect, useRef } from 'react';
 export const GameContext = createContext();
 
 export function GameProvider({ children }) {
+  // --- Pre-existing State Variables ---
   const [wallet, setWallet] = useState(() => {
     const saved = localStorage.getItem('mokhalfaty_wallet');
     return saved ? parseInt(saved, 10) : 1000;
@@ -43,13 +44,26 @@ export function GameProvider({ children }) {
     return saved ? JSON.parse(saved) : false;
   });
 
+  const [licenseHealth, setLicenseHealth] = useState(() => {
+    const saved = localStorage.getItem('mokhalfaty_license_health');
+    return saved ? parseInt(saved, 10) : 3; 
+  });
+
+  // --- NEW: Persistent Level Stars Object Tracker ---
+  const [levelStars, setLevelStars] = useState(() => {
+    const saved = localStorage.getItem('mokhalfaty_level_stars');
+    return saved ? JSON.parse(saved) : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
+  });
+
   const bgMusicRef = useRef(null);
 
+  // Initialize Background Audio Engine
   useEffect(() => {
     bgMusicRef.current = new Audio();
     bgMusicRef.current.loop = true;
   }, []);
 
+  // --- Synced Local Storage Sync Effect ---
   useEffect(() => {
     localStorage.setItem('mokhalfaty_wallet', wallet);
     localStorage.setItem('mokhalfaty_levels', JSON.stringify(unlockedLevels));
@@ -59,12 +73,14 @@ export function GameProvider({ children }) {
     localStorage.setItem('mokhalfaty_phrase', activePhrase);
     localStorage.setItem('mokhalfaty_music_muted', JSON.stringify(musicMuted));
     localStorage.setItem('mokhalfaty_sound_muted', JSON.stringify(soundMuted));
-  }, [wallet, unlockedLevels, ownedPlates, activePlate, ownedUpgrades, activePhrase, musicMuted, soundMuted]);
+    localStorage.setItem('mokhalfaty_license_health', licenseHealth);
+    localStorage.setItem('mokhalfaty_level_stars', JSON.stringify(levelStars)); // Syncing Stars state
+  }, [wallet, unlockedLevels, ownedPlates, activePlate, ownedUpgrades, activePhrase, musicMuted, soundMuted, licenseHealth, levelStars]);
 
+  // --- Pre-existing Audio Player Implementations ---
   const playMusicTrack = (trackPath) => {
     if (!bgMusicRef.current) return;
     try {
-      // Safe check handling both relative URLs and bundled asset hashes
       if (!bgMusicRef.current.src || !bgMusicRef.current.src.includes(trackPath)) {
         bgMusicRef.current.src = trackPath;
         bgMusicRef.current.load();
@@ -105,6 +121,7 @@ export function GameProvider({ children }) {
     }
   };
 
+  // --- Core Action Dispatch Methods ---
   const earnMoney = (amount) => {
     setWallet((prev) => prev + amount);
   };
@@ -123,11 +140,34 @@ export function GameProvider({ children }) {
     }
   };
 
+  // --- NEW: Save Earned Level Stars Function ---
+  const saveLevelStars = (levelId, starsCount) => {
+    setLevelStars((prevStars) => ({
+      ...prevStars,
+      [levelId]: Math.max(prevStars[levelId] || 0, starsCount) // Keeps highest score achieved
+    }));
+  };
+
+  const looseLicensePoint = () => {
+    setLicenseHealth((prev) => Math.max(0, prev - 1));
+  };
+
+  const resetEntireGameSession = () => {
+    setWallet(1000);
+    setUnlockedLevels([1]);
+    setOwnedPlates(['default_plate']);
+    setActivePlate('default_plate');
+    setOwnedUpgrades(['stock_engine']);
+    setActivePhrase('none');
+    setLicenseHealth(3);
+    setLevelStars({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 });
+  };
+
   return (
     <GameContext.Provider value={{
-      wallet, unlockedLevels, ownedPlates, activePlate, ownedUpgrades, activePhrase, musicMuted, soundMuted,
-      setOwnedPlates, setActivePlate, setOwnedUpgrades, setActivePhrase, setMusicMuted, setSoundMuted,
-      earnMoney, chargeMoney, unlockNextLevel, playMusicTrack, playSoundEffect
+      wallet, unlockedLevels, ownedPlates, activePlate, ownedUpgrades, activePhrase, musicMuted, soundMuted, licenseHealth, levelStars,
+      setOwnedPlates, setActivePlate, setOwnedUpgrades, setActivePhrase, setMusicMuted, setSoundMuted, setLicenseHealth,
+      earnMoney, chargeMoney, unlockNextLevel, saveLevelStars, playMusicTrack, playSoundEffect, looseLicensePoint, resetEntireGameSession
     }}>
       {children}
     </GameContext.Provider>

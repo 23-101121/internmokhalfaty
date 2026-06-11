@@ -1,0 +1,35 @@
+.kameen-container {
+  position: absolute;
+  
+  top: 10%; 
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 45;
+  
+  /* Retained smooth easing transition */
+  animation: checkpointSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.kameen-image {
+  width: 80vw; 
+  height: 80%;
+  object-fit: cover; 
+  border-bottom: 6px dashed #ff4411;
+}
+
+@keyframes checkpointSlideIn {
+  from {
+    /* Starts the slide-in sequence from above the screen boundary */
+    transform: translateY(-200%);
+    opacity: 0;
+  }
+  to {
+    /* Settles cleanly at the designated top: 22% position */
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

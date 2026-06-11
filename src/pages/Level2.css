@@ -1,0 +1,311 @@
+/* Isolated container wrapper layout setup context */
+.level2-game-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0b141f;
+}
+
+/* ==========================================================================
+   FAR LEFT BOUNDARY SPEED RADAR CAMERAS (PINNED & SCALED UP)
+   ========================================================================== */
+.level2-radar-ground-asset.level2-pos-left-lane {
+  position: absolute;
+  left: 2%; /* Hard-pinned tightly along the leftmost view margin edge of the display screen */
+  width: 115px; /* Prominently scaled up to ensure high visibility asset recognition */
+  height: auto;
+  z-index: 95; /* Layered explicitly cleanly above standard terrain background fragments */
+  pointer-events: none;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+  will-change: transform;
+}
+
+/* ==========================================================================
+   ASPHALT SPEED REGULATION CIRCLE DECAL TRACKS
+   ========================================================================== */
+.level2-ground-speed-sign {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  pointer-events: none;
+  perspective: 60px;
+}
+
+.level2-ground-circle-border {
+  width: 75px;
+  height: 75px;
+  background-color: #FFFFFF; /* Crisp White Internal Base Fill */
+  border: 7px solid #E74C3C; /* Radiant Crimson Circle Limit Outline */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.35);
+  transform: rotateX(22deg); 
+}
+
+.level2-ground-sign-number {
+  color: #111111; /* Clean Solid Black Values */
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+/* SCREEN SPEED VIOLATION BURST ANIMATIONS */
+.level2-flash-active {
+  animation: level2FlashBurstEffect 0.25s cubic-bezier(0.215, 0.610, 0.355, 1) both;
+}
+@keyframes level2FlashBurstEffect {
+  0% { filter: brightness(1); }
+  35% { filter: brightness(2.1) contrast(1.05); }
+  100% { filter: brightness(1); }
+}
+
+.level2-screen-flash-element {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  z-index: 999;
+  pointer-events: none;
+  animation: fadeFlashOverlay 0.25s ease-out forwards;
+}
+@keyframes fadeFlashOverlay {
+  0% { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+
+/* Generalized structural frame component borders */
+.level2-ui-theme-frame {
+  background-color: #152232; 
+  border: 3px solid #FF5722; 
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ==========================================================================
+   ISOLATED DECOUPLED LEFT FLOATING CONTAINER (VIOLATIONS TALLY COUNTER)
+   ========================================================================== */
+.level2-violations-left-box {
+  position: absolute;
+  top: 35px;
+  left: 40px; 
+  z-index: 125;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 195px;
+}
+
+/* ==========================================================================
+   PERFECTLY CENTERED SCORING PROGRESS AND TRACK DASHBOARD 
+   ========================================================================== */
+.level2-hud-dashboard-centered.dark-blue-accent-bg {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%); /* Guaranteed exact spatial horizontal coordinate screen center alignment */
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  width: 42%;
+  max-width: 390px;
+  justify-content: space-around;
+}
+
+.level2-metric-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.level2-divider-left {
+  border-left: 2px dashed rgba(255, 87, 34, 0.35);
+  padding-left: 24px;
+}
+
+.level2-metric-label {
+  color: #9cb1c9;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.level2-metric-value {
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.level2-text-red {
+  color: #FF5252;
+  text-shadow: 0 0 10px rgba(255, 82, 82, 0.3);
+}
+
+.level2-text-gold { color: #FFCC00; }
+.level2-text-green { color: #2ECC71; }
+
+.level2-speed-alert {
+  color: #FF5252;
+  animation: txtWarnPulse 0.5s ease infinite alternate;
+}
+@keyframes txtWarnPulse {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}
+
+/* Right Side Interaction Tools */
+.level2-hud-pause-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 54px;
+  height: 54px;
+  background-color: #121922;
+  border: 3px solid #FF5522;
+  border-radius: 14px;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.level2-pause-bars { display: flex; gap: 6px; }
+.level2-pause-bars span { width: 6px; height: 20px; background-color: #ffffff; border-radius: 2px; }
+
+/* Score Modal Presentation Sheets */
+.level2-card-ticket {
+  background-color: #fcfbf7;
+  width: 90%;
+  max-width: 440px;
+  border-radius: 16px;
+  padding: 30px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  animation: level2PopupPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.level2-border-green { border: 4px solid #2ecc71; }
+.level2-border-red { border: 4px solid #ff4d4d; }
+
+.level2-headline-main { font-family: 'Arial Black', sans-serif; font-size: 2rem; font-weight: 900; margin: 0; }
+.level2-green-txt { color: #27ae60; }
+.level2-red-txt { color: #ff4d4d; }
+.level2-headline-arabic { font-size: 1.6rem; font-weight: bold; color: #333333; margin: 4px 0; }
+.level2-ticket-sub { font-size: 0.8rem; color: #7f8c8d; text-transform: uppercase; }
+.level2-ticket-hr { border: none; border-top: 3px solid #222222; margin: 18px auto; width: 100%; }
+.level2-narrative-p { font-size: 1.02rem; color: #444; line-height: 1.5; margin-bottom: 20px; }
+
+.level2-cash-status-box { color: #000;
+     display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 8px; margin-bottom: 24px; }
+.level2-bg-bonus { background-color: #e2f7e9; border: 1px solid #2ecc71; }
+.level2-bg-penalty { background-color: #fcebe8; border: 1px solid #ff4d4d; }
+.level2-cash-value { font-size: 1.4rem; font-weight: 900; }
+
+.level2-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.level2-btn-cta { font-size: 1.1rem; font-weight: bold; padding: 14px; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 5px 0 rgba(0,0,0,0.15); }
+.level2-btn-orange { background-color: #ff5722; color: #fff; }
+.level2-btn-red-solid { background-color: #ff4d5a; color: #fff; }
+.level2-btn-grey { background-color: #757575; color: #fff; }
+
+/* Backdrop dim overlays */
+.level2-dimmer-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 20, 31, 0.94);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+.level2-blur-backdrop { background-color: rgba(10, 15, 24, 0.75) !important; backdrop-filter: blur(4px); }
+
+/* Pause Component Window Boxes */
+.level2-pause-modal {
+  width: 420px;
+  background-color: #111a24;
+  border: 2px solid #FF5522;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+  animation: level2PopupPop 0.25s ease-out;
+}
+.level2-pause-header { background-color: #1a2635; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #FF5522; }
+.level2-pause-header h2 { color: #fff; margin: 0; font-size: 1.15rem; }
+.level2-close-x { background: none; border: none; color: #8fa3b9; font-size: 1.5rem; cursor: pointer; }
+.level2-pause-body { padding: 30px 24px; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.level2-btn-resume { width: 190px; padding: 12px; background: linear-gradient(to bottom, #FF6633, #FF4411); border: none; border-radius: 8px; color: #fff; font-weight: 700; cursor: pointer; }
+.level2-btn-exit { width: 190px; padding: 12px; background: #2c3e50; border: none; border-radius: 8px; color: #cbd5e1; font-weight: 600; cursor: pointer; }
+
+/* ==========================================================================
+   WALLET HOOKS & OVERRIDES (YOUR STYLE REFERENCE)
+   ========================================================================== */
+.level2-top-wallet-positioner { 
+  position: fixed; 
+  top: 30px; 
+  right: 40px; 
+  z-index: 1001; 
+}
+
+.level2-plates-wallet-badge {
+  background-color: #FF6B35;
+  padding: 10px 18px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  animation: walletStatePopEntrance 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.level2-wallet-badge-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.level2-wallet-badge-value {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+/* Green feedback ring for level completions */
+.level2-wallet-win .level2-plates-wallet-badge {
+  filter: drop-shadow(0 0 15px rgba(46, 204, 113, 0.6));
+  animation: minorPulseGlow 0.8s ease-in-out infinite alternate;
+}
+
+/* Red feedback ring for vehicle failures */
+.level2-wallet-loss .level2-plates-wallet-badge {
+  filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.6));
+  animation: minorPulseGlow 0.8s ease-in-out infinite alternate;
+}
+
+/* Shared reference animations */
+@keyframes walletStatePopEntrance {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes minorPulseGlow {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes level2PopupPop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

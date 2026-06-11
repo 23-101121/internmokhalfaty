@@ -152,3 +152,9 @@
   height: 14px;
   object-fit: contain;
 }
+
+.level-grid-tile.locked-grayed-out {
+  opacity: 0.4;
+  filter: grayscale(100%);
+  pointer-events: none; /* Stops accidental keyboard/touch triggers */
+}

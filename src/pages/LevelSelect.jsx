@@ -1,6 +1,6 @@
-// src/pages/LevelSelect.jsx
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GameContext } from '../context/GameContext';
 import './LevelSelect.css';
 import watermarkLogo from '../assets/logo_watermark.png'; 
 import imgFlag from '../assets/icon_flag.png';
@@ -10,18 +10,19 @@ import imgLevelsTitleIcon from '../assets/icon_levels.png';
 
 export default function LevelSelect() {
   const navigate = useNavigate();
+  
+  // Extract dynamic progressive states directly from the updated context setup
+  const { unlockedLevels, levelStars } = useContext(GameContext);
 
-  const levelsData = [
-    { id: 1, starsEarned: 3, isUnlocked: true },
-    { id: 2, starsEarned: 3, isUnlocked: true },
-    { id: 3, starsEarned: 0, isUnlocked: true },
-    { id: 4, starsEarned: 0, isUnlocked: true },
-    { id: 5, starsEarned: 0, isUnlocked: true },
-    { id: 6, starsEarned: 0, isUnlocked: true },
-    { id: 7, starsEarned: 0, isUnlocked: true },
-    { id: 8, starsEarned: 0, isUnlocked: true },
-    { id: 9, starsEarned: 0, isUnlocked: true },
-  ];
+  // Generate our map of 9 dynamic levels structure setup on demand
+  const levelsData = Array.from({ length: 9 }, (_, index) => {
+    const id = index + 1;
+    return {
+      id,
+      isUnlocked: unlockedLevels.includes(id),
+      starsEarned: levelStars[id] || 0
+    };
+  });
 
   const renderStars = (score) => {
     const starNodes = [];
@@ -43,9 +44,10 @@ export default function LevelSelect() {
       <div className="levels-bg-layer" />
 
       <div className="menu-watermark">
-             <img src={watermarkLogo} alt="" className="watermark-icon" onError={(e) => e.target.style.display='none'} />
-             <span className="watermark-text">YA MOKHALFATY</span>
-           </div>
+        <img src={watermarkLogo} alt="" className="watermark-icon" onError={(e) => e.target.style.display='none'} />
+        <span className="watermark-text">YA MOKHALFATY</span>
+      </div>
+      
       <div className="level-modal-board">
         
         <div className="modal-header-bar">
@@ -60,8 +62,9 @@ export default function LevelSelect() {
           {levelsData.map((lvl) => (
             <div 
               key={lvl.id} 
-              className={`level-grid-tile ${lvl.isUnlocked ? 'unlocked' : ''}`}
-              onClick={() => lvl.isUnlocked && navigate('/play')}
+              className={`level-grid-tile ${lvl.isUnlocked ? 'unlocked' : 'locked'}`}
+              onClick={() => lvl.isUnlocked && navigate('/instructions', { state: { selectedLevelId: lvl.id } })}
+              style={{ cursor: lvl.isUnlocked ? 'pointer' : 'not-allowed' }}
             >
               <img src={imgFlag} alt="" className="level-tile-flag" />
               <span className="level-tile-number">{lvl.id}</span>

@@ -21,9 +21,7 @@ export default function MainMenu() {
   }, []);
 
   return (
-    /* Added page-transition-fade here for a smooth screen entry animation */
     <div className="menu-container page-transition-fade">
-      {/* Background road environment scene */}
       <div className="menu-background-layer" />
 
       <div className="menu-watermark">
@@ -37,16 +35,13 @@ export default function MainMenu() {
         className={`menu-left-hero ${animateBus ? 'slide-in' : ''}`} 
       />
 
-      {/* Typography & Buttons column aligned to the right side */}
       <div className="menu-content-wrapper">
         
-        {/* Titles Group */}
         <div className="menu-titles-stack">
           <h1 className="menu-main-title">يا مخالفتي !</h1>
           <h2 className="menu-sub-title">صاروخ الدائري</h2>
         </div>
 
-        {/* Buttons List Panel */}
         <div className="menu-buttons-list">
           
           {/* Start Game Button (Navigates to Level Selection) */}
@@ -61,7 +56,6 @@ export default function MainMenu() {
             Levels
           </button>
           
-          {/* Settings Button (Navigates to Settings Screen) */}
           <button className="menu-btn menu-btn-nav" onClick={() => navigate('/settings')}>
             <img src={iconSettings} alt="" className="btn-icon-asset" />
             Settings
@@ -70,7 +64,6 @@ export default function MainMenu() {
         </div>
       </div>
 
-      {/* Bottom Right Help Utility (Navigates to Driver Manual Screen) */}
       <button className="menu-help-trigger" onClick={() => navigate('/manual')}>
         <img src={iconHelp} alt="Help/Manual Document" className="help-icon-img" />
       </button>
